@@ -16,6 +16,9 @@ set laststatus=2
 " Search options
 """""""""""""""""""""""""""""""""""
 set showmatch
+set hlsearch
+:nnoremap <CR> :nohlsearch<cr>
+nnoremap <leader><leader> <c-^>
 "insentive search unless there are uppercase letter in the search
 set ignorecase smartcase
 "incremental sarch
