@@ -79,6 +79,7 @@ let g:netrw_liststyle = 3
 let g:netrw_winsize   = 15
 
 nmap <silent> <leader>n :NERDTreeToggle<CR>
+nmap <silent> <leader>. :NERDTree %:p:h<CR>
 let NERDTreeChDirMode=2
 set splitright
 
