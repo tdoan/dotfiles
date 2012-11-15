@@ -55,12 +55,15 @@ set listchars=tab:▸\ ,eol:¬
 "Invisible character colors
 highlight NonText guifg=#4a4a59
 highlight SpecialKey guifg=#4a4a59
-set list
+"set list
 
 syntax on
 filetype on
 filetype indent on
 filetype plugin on
+
+runtime macros/matchit.vim
+
 compile ruby
 "show line numbers
 set nu
@@ -88,3 +91,8 @@ map ,t :tabe <C-R>=expand("%:p:h") . "/" <CR>
 map ,s :split <C-R>=expand("%:p:h") . "/" <CR>
 
 nmap <leader>f :set foldmethod=syntax<CR>
+
+cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
+
+autocmd FileType ruby setlocal foldmethod=syntax
+autocmd FileType css setlocal foldmethod=indent shiftwidth=2 tabstop=2
