@@ -1,0 +1,15 @@
+source :rubygems
+
+gem 'bundler'
+gem 'debugger'
+gem 'gem-homepage'
+gem 'gem-open'
+gem 'gemcutter'
+gem 'pry'
+gem 'rdoc'
+gem 'minitest'
+gem 'kang'
+gem 'brakeman'
+gem 'guard'
+gem 'rb-fsevent'
+gem 'git'
