@@ -90,9 +90,11 @@ map ,e :e <C-R>=expand("%:p:h") . "/" <CR>
 map ,t :tabe <C-R>=expand("%:p:h") . "/" <CR>
 map ,s :split <C-R>=expand("%:p:h") . "/" <CR>
 
+set foldlevelstart=20
 nmap <leader>f :set foldmethod=syntax<CR>
 
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
 autocmd FileType ruby setlocal foldmethod=syntax
 autocmd FileType css setlocal foldmethod=indent shiftwidth=2 tabstop=2
+au BufRead,BufNewFile *.fountain set filetype=fountain
