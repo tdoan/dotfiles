@@ -100,3 +100,7 @@ cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 autocmd FileType ruby setlocal foldmethod=syntax
 autocmd FileType css setlocal foldmethod=indent shiftwidth=2 tabstop=2
 au BufRead,BufNewFile *.fountain set filetype=fountain
+
+" xmpfilter the full buffer
+nmap  ,r mzggVG!xmpfilter -a --no-warnings<cr>`z
+imap  ,r <ESC>,r
