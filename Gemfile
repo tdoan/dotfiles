@@ -1,4 +1,4 @@
-source :rubygems
+source 'https://rubygems.org'
 
 gem 'bundler'
 gem 'debugger',   :platforms => :ruby
