@@ -84,7 +84,9 @@ let g:netrw_winsize   = 15
 nmap <silent> <leader>n :NERDTreeToggle<CR>
 nmap <silent> <leader>. :NERDTree %:p:h<CR>
 let NERDTreeChDirMode=2
+let g:NERDTreeHijackNetrw=1
 set splitright
+autocmd vimenter * if !argc() | NERDTree | endif
 
 map ,e :e <C-R>=expand("%:p:h") . "/" <CR>
 map ,t :tabe <C-R>=expand("%:p:h") . "/" <CR>
