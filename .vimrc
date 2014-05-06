@@ -97,10 +97,10 @@ let NERDTreeHijackNetrw=1
 set splitright
 " autocmd vimenter * if !argc() | NERDTree | endif
 
-map ,e :e <C-R>=expand("%:p:h") . "/" <CR>
-map ,t :tabe <C-R>=expand("%:p:h") . "/" <CR>
-map ,s :split <C-R>=expand("%:p:h") . "/" <CR>
-map ,v :vsplit <C-R>=expand("%:p:h") . "/" <CR>
+nnoremap ,e :e <C-R>=expand("%:p:h") . "/" <CR>
+nnoremap ,t :tabe <C-R>=expand("%:p:h") . "/" <CR>
+nnoremap ,s :split <C-R>=expand("%:p:h") . "/" <CR>
+nnoremap ,v :vsplit <C-R>=expand("%:p:h") . "/" <CR>
 
 set foldlevelstart=20
 nmap <leader>f :set foldmethod=syntax<CR>
