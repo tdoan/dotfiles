@@ -139,3 +139,11 @@ imap ,m <Plug>(seeing-is-believing-mark)
 nnoremap <leader>q :bp<bar>sp<bar>bn<bar>bd<CR>
 nnoremap H ^
 nnoremap L $
+nnoremap <leader>d :<C-U>call DiffToggle()<CR>
+function! DiffToggle()
+  if &diff 
+    windo diffoff
+  else
+    windo diffthis
+  endif
+endfunction
