@@ -138,7 +138,9 @@ imap ,m <Plug>(seeing-is-believing-mark)
 " random
 nnoremap <leader>q :bp<bar>sp<bar>bn<bar>bd<CR>
 nnoremap H ^
+vnoremap H ^
 nnoremap L $
+vnoremap L $
 nnoremap <leader>d :<C-U>call DiffToggle()<CR>
 function! DiffToggle()
   if &diff 
