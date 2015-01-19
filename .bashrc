@@ -12,7 +12,7 @@ export PAGER=less
 export EDITOR=vim
 # export GEM_EDITOR=mvim
 export LESS=QMdcij10R
-export PGDATA=~/Documents/pg_data_9_3
+export PGDATA=~/Documents/pg_data_9_4
 export PGHOST=~/tmp
 export NMAPSERVICES=/opt/local/share/nmap/nmap-services
 export CFINPUTS=/opt/local/var/cfengine/inputs
@@ -66,6 +66,7 @@ alias p=bin_puma
 alias rbs=rbsh
 alias gl="git log --oneline"
 alias bundlenew="bundle install --path=vendor/bundle --without=production"
+alias be="bundle exec"
 
 #TMUX
 alias tls="tmux list-session"
