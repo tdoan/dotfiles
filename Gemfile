@@ -8,4 +8,4 @@ gem 'pry'
 gem 'rdoc'
 gem 'minitest'
 gem 'git'
-gem 'seeing_is_believing'
+gem 'seeing_is_believing', ">= 3.0.0.beta6"
