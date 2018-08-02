@@ -1,5 +1,6 @@
+unset PROMPT_COMMAND
 set -o vi
-export PATH=~/prebin:/usr/local/bin:/usr/local/share/npm/bin:/bin:/usr/bin:/sbin:/usr/sbin:~/bin:/usr/X11R6/bin
+export PATH=$HOME/.cargo/bin:~/prebin:/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:/bin:/usr/bin:/sbin:/usr/sbin:~/bin:/usr/X11R6/bin
 
 complete -cf sudo
 
@@ -9,22 +10,22 @@ source ~/bin/rbenv-my-version-name
 export PS1='\[\e[31;1m\]\h\[\e[0m\][\w$(__git_ps1 " (%s)")$(rbenv-version-name)]% '
 
 export PAGER=less
-export EDITOR=vim
-# export GEM_EDITOR=mvim
+export EDITOR=nvim
+# export GEM_EDITOR=nvim
 export LESS=QMdcij10R
-export PGDATA=~/Documents/pg_data_9_4
+export PGDATA=~/Documents/pg_data_10_1
 export PGHOST=~/tmp
 export NMAPSERVICES=/opt/local/share/nmap/nmap-services
 export CFINPUTS=/opt/local/var/cfengine/inputs
 export WEATHER_BUG_KEY=A5584914882
 export RAILS_ENV=development
 export NMAP_REPO=nmaprepo
-export GIT_EXTERNAL_DIFF=~/bin/myopendiff-git
+# export GIT_EXTERNAL_DIFF=~/bin/myopendiff-git
 export CLICOLOR=1
 export LSCOLORS=exfxcxdxbxegedabagacad
 export GREP_OPTIONS="--color"
-export CONFIGURE_OPTS="--with-readline-dir=/usr/local/Cellar/readline/6.2.4/"
-export RUBY_CONFIGURE_OPTS=--with-opt-dir="`brew --prefix openssl`:`brew --prefix readline`:`brew --prefix libyaml`:`brew --prefix gdbm`:`brew --prefix libffi`"
+# export CONFIGURE_OPTS="--with-readline-dir=/usr/local/Cellar/readline/6.2.4/"
+# export RUBY_CONFIGURE_OPTS=--with-opt-dir="`brew --prefix openssl`:`brew --prefix readline`:`brew --prefix libyaml`:`brew --prefix gdbm`:`brew --prefix libffi`"
 alias ls="ls -F"
 alias ssh="ssh -C"
 alias j=jobs
@@ -40,7 +41,7 @@ alias pullg="(cd ~/workspace/git ; git pull)"
 alias pullrbx="(cd ~/workspace/rubinius ; git pull)"
 alias pullruby="(cd ~/workspace/ruby ; git pull)"
 
-alias vib="vim ~/.bashrc"
+alias vib="nvim ~/.bashrc"
 
 # GIT Aliases
 alias gs="git status --short"
@@ -68,12 +69,19 @@ alias gl="git log --oneline"
 alias bundlenew="bundle install --path=vendor/bundle --without=production"
 alias be="bundle exec"
 
+#docker
+alias dm="docker-machine"
 #TMUX
 alias tls="tmux list-session"
 alias t12="th 12"
 alias t80="tw 12"
 alias  ta="tmux attach"
-alias  td="tmux -L daemon new -A -s daemon \; split-window -c ~/prj/ruby/fake_dns_server"
+alias  td="tmux -L daemon new -A -s daemon \; split-window -c ~/prj/eight-eight-two"
+tnn () 
+{ 
+  tn ${PWD##*/}
+}
+
 tn() {
   tmux new -A -s ${1}
 }
@@ -87,8 +95,35 @@ th() {
 }
 
 vd() {
-  vim `pwd`
+  nvim `pwd`
 }
 
 #
 alias pgw="psql -c 'select pid,datname,usename,application_name from pg_stat_activity;'"
+
+# ruby webserver
+rweb() {
+  if [ -z "$1" ] 
+  then
+    port=9090
+  else
+    port=${1}
+  fi
+  ruby -run -e httpd . -p ${port}
+}
+
+alias rust-nightly="sh rustup.sh --channel=nightly --prefix=$HOME/bin/rust --disable-sudo"
+
+# export RUST_SRC_PATH=~/clones/rust/src
+export RUST_SRC_PATH=~/.rustup/toolchains/nightly-x86_64-apple-darwin/lib/rustlib/src/rust/src
+winbuild() {
+  env LIB="/Users/tdoan/lib/windows/ucrt/x64/;/Users/tdoan/lib/windows/um/x64/;/Users/tdoan/lib/windows/VC_lib/amd64/" cargo build --target=x86_64-pc-windows-msvc "$@"
+}
+
+# Random
+alias rt="printf '\e]0;\a'"
+
+# no more VIM
+alias vi=nvim
+alias vim=nvim
+alias dieselup="cargo install diesel_cli --no-default-features --features postgres"

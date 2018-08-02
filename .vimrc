@@ -1,17 +1,39 @@
 " This is Tony Doan's .vimrc file
 " 
-"
-call pathogen#infect()
+set nocompatible
+filetype off
+packadd minpac
+call minpac#init()
+call minpac#add('ctrlpvim/ctrlp.vim')
+call minpac#add('k-takata/minpac', {'type': 'opt'})
+call minpac#add('altercation/vim-colors-solarized')
+call minpac#add('scrooloose/nerdtree')
+call minpac#add('tpope/vim-fugitive')
+call minpac#add('tpope/vim-surround')
+call minpac#add('tpope/vim-unimpaired')
+call minpac#add('tpope/vim-commentary')
+call minpac#add('rust-lang/rust.vim')
+call minpac#add('prabirshrestha/async.vim')
+call minpac#add('prabirshrestha/vim-lsp')
+call minpac#add('prabirshrestha/asyncomplete.vim')
+call minpac#add('prabirshrestha/asyncomplete-lsp.vim')
+call minpac#add('altercation/vim-colors-solarized')
+call minpac#add('cespare/vim-toml')
+call minpac#add('christoomey/vim-tmux-navigator')
+call minpac#add('jremmen/vim-ripgrep')
+
+filetype plugin indent on
+
 """"""""""""""""""""""""""""""""""
 " Basic editing
 """"""""""""""""""""""""""""""""""
-set nocompatible
 set hidden
 " remember more commands and search history
 set history=10000
 set ts=2 sts=2 sw=2 expandtab
 set autoindent
 set laststatus=2
+set mouse=
 """""""""""""""""""""""""""""""""""
 " Search options
 """""""""""""""""""""""""""""""""""
@@ -33,10 +55,12 @@ set backup
 set backupdir=~/tmp/.vim,/var/tmp,/tmp
 set directory=~/tmp/.vim,/var/tmp,/tmp
 
-if &t_Co > 2 || has("gui_running")
-  " Enable syntax highlighting
-  syntax on
-endif
+set diffopt=vertical,filler,iwhite
+
+syntax enable
+set background=dark
+let g:solarized_termcolors=256
+colorscheme solarized
 
 if has("autocmd")
   " Enable filetype detection
@@ -53,11 +77,10 @@ nmap <leader>l :set list!<CR>
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
 "Invisible character colors
-highlight NonText guifg=#4a4a59
-highlight SpecialKey guifg=#4a4a59
+"highlight NonText guifg=#4a4a59
+"highlight SpecialKey guifg=#4a4a59
 "set list
 
-syntax on
 filetype on
 filetype indent on
 filetype plugin on
@@ -71,9 +94,9 @@ set nu
 set ruler
 "
 "Auto source .vimrc
-if has("autocmd")
-autocmd bufwritepost .vimrc source $MYVIMRC
-endif
+"if has("autocmd")
+"autocmd bufwritepost .vimrc source $MYVIMRC
+"endif
 
 " nnoremap <silent> + :exe "resize " . (winheight(0) * 3/2)<CR>
 " nnoremap <silent> - :exe "resize " . (winheight(0) * 2/3)<CR>
@@ -97,10 +120,10 @@ let NERDTreeHijackNetrw=1
 set splitright
 " autocmd vimenter * if !argc() | NERDTree | endif
 
-nnoremap ,e :e <C-R>=expand("%:p:h") . "/" <CR>
-nnoremap ,t :tabe <C-R>=expand("%:p:h") . "/" <CR>
-nnoremap ,s :split <C-R>=expand("%:p:h") . "/" <CR>
-nnoremap ,v :vsplit <C-R>=expand("%:p:h") . "/" <CR>
+nnoremap <leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
+nnoremap <leader>t :tabe <C-R>=expand("%:p:h") . "/" <CR>
+nnoremap <leader>s :split <C-R>=expand("%:p:h") . "/" <CR>
+nnoremap <leader>v :vsplit <C-R>=expand("%:p:h") . "/" <CR>
 
 set foldlevelstart=20
 nmap <leader>f :set foldmethod=syntax<CR>
@@ -127,13 +150,13 @@ autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 autocmd FileType scss set omnifunc=csscomplete#CompleteCSS
 
 " vim-seeing-is-believing
-nmap ,r <Plug>(seeing-is-believing-run)
-xmap ,r <Plug>(seeing-is-believing-run)
-imap ,r <Plug>(seeing-is-believing-run)
+nmap <leader>r <Plug>(seeing-is-believing-run)
+"xmap ,r <Plug>(seeing-is-believing-run)
+"imap ,r <Plug>(seeing-is-believing-run)
 
-nmap ,m <Plug>(seeing-is-believing-mark)
-xmap ,m <Plug>(seeing-is-believing-mark)
-imap ,m <Plug>(seeing-is-believing-mark)
+nmap <leader>m <Plug>(seeing-is-believing-mark)
+"xmap ,m <Plug>(seeing-is-believing-mark)
+"imap ,m <Plug>(seeing-is-believing-mark)
 
 " random
 nnoremap <leader>q :bp<bar>sp<bar>bn<bar>bd<CR>
@@ -149,3 +172,24 @@ function! DiffToggle()
     windo diffthis
   endif
 endfunction
+
+au! BufRead,BufWrite,BufWritePost,BufNewFile *.org 
+au BufEnter *.org            call org#SetOrgFileType()
+
+let g:racer_cmd = "/Users/tdoan/.cargo/bin/racer"
+let g:racer_experimental_completer = 1
+au FileType rust nmap gd <Plug>(rust-def)
+au FileType rust nmap gs <Plug>(rust-def-split)
+au FileType rust nmap gx <Plug>(rust-def-vertical)
+au FileType rust nmap <leader>gd <Plug>(rust-doc)
+
+if executable('rls')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'rls',
+        \ 'cmd': {server_info->['rustup', 'run', 'stable', 'rls']},
+        \ 'whitelist': ['rust'],
+        \ })
+endif 
+
+command! PackUpdate call minpac#update()
+command! PackClean call minpac#clean()
