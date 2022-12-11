@@ -4,23 +4,33 @@ set nocompatible
 filetype off
 packadd minpac
 call minpac#init()
-call minpac#add('ctrlpvim/ctrlp.vim')
 call minpac#add('k-takata/minpac', {'type': 'opt'})
-call minpac#add('altercation/vim-colors-solarized')
-call minpac#add('scrooloose/nerdtree')
 call minpac#add('tpope/vim-fugitive')
+call minpac#add('tpope/vim-commentary')
 call minpac#add('tpope/vim-surround')
 call minpac#add('tpope/vim-unimpaired')
-call minpac#add('tpope/vim-commentary')
+call minpac#add('nelstrom/vim-visual-star-search')
+call minpac#add('vim-ruby/vim-ruby')
+call minpac#add('jlanzarotta/bufexplorer')
+call minpac#add('scrooloose/nerdtree')
 call minpac#add('rust-lang/rust.vim')
-call minpac#add('prabirshrestha/async.vim')
-call minpac#add('prabirshrestha/vim-lsp')
-call minpac#add('prabirshrestha/asyncomplete.vim')
-call minpac#add('prabirshrestha/asyncomplete-lsp.vim')
 call minpac#add('altercation/vim-colors-solarized')
+call minpac#add('racer-rust/vim-racer')
 call minpac#add('cespare/vim-toml')
-call minpac#add('christoomey/vim-tmux-navigator')
+call minpac#add('Valloric/YouCompleteMe')
 call minpac#add('jremmen/vim-ripgrep')
+call minpac#add('christoomey/vim-tmux-navigator')
+call minpac#add('ctrlpvim/ctrlp.vim')
+call minpac#add('machakann/vim-highlightedyank')
+
+"call minpac#add('prabirshrestha/async.vim')
+"call minpac#add('prabirshrestha/vim-lsp')
+"call minpac#add('prabirshrestha/asyncomplete.vim')
+"call minpac#add('prabirshrestha/asyncomplete-lsp.vim')
+
+call minpac#add('w0rp/ale')
+call minpac#add('godlygeek/tabular')
+call minpac#add('plasticboy/vim-markdown')
 
 filetype plugin indent on
 
@@ -59,8 +69,8 @@ set diffopt=vertical,filler,iwhite
 
 syntax enable
 set background=dark
-let g:solarized_termcolors=256
-colorscheme solarized
+" let g:solarized_termcolors=256
+" colorscheme solarized
 
 if has("autocmd")
   " Enable filetype detection
@@ -193,3 +203,8 @@ endif
 
 command! PackUpdate call minpac#update()
 command! PackClean call minpac#clean()
+
+let g:racer_cmd = "/Users/tdoan/.cargo/bin/racer"
+let g:ycm_rust_src_path="/Users/tdoan/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src/"
+
+"let g:ale_rust_cargo_check = 1
