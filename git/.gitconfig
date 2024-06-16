@@ -8,6 +8,7 @@
   sb = show-branch
   sbr = show-branch --remotes
   l = log --oneline
+  r = remote
 [color]
   ui = true
   
