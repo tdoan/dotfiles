@@ -1,7 +1,7 @@
 [alias]
   co = checkout
   st = status
-  hist = log --pretty=format: '%h %ad | %s%d [%an]' --graph  --date=short
+  hist = log --graph --date=short --pretty=format: '%h %ad | %s%d [%an]'
   type = cat-file -t
   dump = cat-file -p
   s = status --short
