@@ -16,7 +16,7 @@ autoload -Uz tetriscurses
 bindkey '^f' autosuggest-accept
 bindkey '^e' expand-or-complete
 
-eval "$(oh-my-posh init zsh)"
+eval "$(oh-my-posh init zsh --config $POSH_THEMES_PATH/catppuccin_mocha.omp.json)"
 
 #HISTORY
 HISTSIZE=10000
@@ -31,13 +31,19 @@ setopt hist_find_no_dups
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
-eval "$(fzf --zsh)"
+if type fzf &>/dev/null; then
+  eval "$(fzf --zsh)"
+fi
 
 export EDITOR=vi
 bindkey " " magic-space
 bindkey "^o" clear-screen
+if type rbenv &>/dev/null; then
 eval "$(rbenv init - zsh)"
+fi
+if type exa &>/dev/null; then
 alias ls=exa
+fi
 alias la="exa -la"
 alias tailscale=/Applications/Tailscale.app/Contents/MacOS/Tailscale
 alias hh=hstr                    # hh to be alias for hstr
@@ -96,4 +102,6 @@ ssh()
 # eval "$(starship init zsh)"
 export PATH=~/bin:$PATH
 export PGDATA=/Users/tdoan/Documents/pgdata
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+if type brew&>/dev/null; then
+  export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+fi
