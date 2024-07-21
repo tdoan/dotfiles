@@ -16,7 +16,7 @@ autoload -Uz tetriscurses
 bindkey '^f' autosuggest-accept
 bindkey '^e' expand-or-complete
 
-eval "$(oh-my-posh init zsh --config $POSH_THEMES_PATH/catppuccin_mocha.omp.json)"
+eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/themes/catppuccin_mocha.omp.json)"
 
 #HISTORY
 HISTSIZE=10000
