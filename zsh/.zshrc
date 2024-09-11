@@ -9,12 +9,17 @@ source "${ZINIT_HOME}/zinit.zsh"
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
+zinit load zsh-users/zsh-history-substring-search
 
 autoload -U compinit && compinit
 autoload -Uz tetriscurses
 
 bindkey '^f' autosuggest-accept
-bindkey '^e' expand-or-complete
+bindkey '^e' forward-word
+bindkey '^g' autosuggest-clear
+bindkey '^n' autosuggest-fetch
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
 
 eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/themes/catppuccin_mocha.omp.json)"
 
