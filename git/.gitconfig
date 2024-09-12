@@ -11,4 +11,5 @@
   r = remote
 [color]
   ui = true
-  
+[pull]
+  ff = only
