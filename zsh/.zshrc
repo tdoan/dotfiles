@@ -14,12 +14,19 @@ zinit load zsh-users/zsh-history-substring-search
 autoload -U compinit && compinit
 autoload -Uz tetriscurses
 
+bindkey -v
 bindkey '^f' autosuggest-accept
 bindkey '^e' forward-word
 bindkey '^g' autosuggest-clear
 bindkey '^n' autosuggest-fetch
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
+bindkey " " magic-space
+bindkey "^o" clear-screen
+
+if [ -f ~/.zshrc.local ]; then
+    source ~/.zshrc.local
+fi
 
 eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/themes/catppuccin_mocha.omp.json)"
 
@@ -41,16 +48,24 @@ if type fzf &>/dev/null; then
 fi
 
 export EDITOR=vi
-bindkey " " magic-space
-bindkey "^o" clear-screen
+export VISUAL=vi
+if type nvim &>/dev/null; then
+  export EDITOR=nvim
+  export VISUAL=nvim
+  alias vi=nvim
+  alias vim=nvim
+fi
+
 if type rbenv &>/dev/null; then
-eval "$(rbenv init - zsh)"
+  eval "$(rbenv init - zsh)"
 fi
 if type exa &>/dev/null; then
-alias ls=exa
+  alias ls=exa
 fi
-alias la="exa -la"
-alias tailscale=/Applications/Tailscale.app/Contents/MacOS/Tailscale
+if type exa &>/dev/null; then
+  alias ls=exa
+  alias la="exa -la"
+fi
 alias hh=hstr                    # hh to be alias for hstr
 export HSTR_CONFIG=prompt-bottom,hicolor
 
