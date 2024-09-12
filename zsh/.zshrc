@@ -28,6 +28,7 @@ if [ -f ~/.zshrc.local ]; then
     source ~/.zshrc.local
 fi
 
+export PATH=~/bin:$PATH
 eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/themes/catppuccin_mocha.omp.json)"
 
 #HISTORY
@@ -120,7 +121,6 @@ ssh()
 }
 
 # eval "$(starship init zsh)"
-export PATH=~/bin:$PATH
 export PGDATA=/Users/tdoan/Documents/pgdata
 if type brew&>/dev/null; then
   export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
