@@ -67,8 +67,6 @@ if type exa &>/dev/null; then
   alias ls=exa
   alias la="exa -la"
 fi
-alias hh=hstr                    # hh to be alias for hstr
-export HSTR_CONFIG=prompt-bottom,hicolor
 
 #TMUX
 alias tls="tmux list-session"
@@ -119,9 +117,3 @@ ssh()
    # revert the window title after the ssh command
    title $USER@$HOST
 }
-
-# eval "$(starship init zsh)"
-export PGDATA=/Users/tdoan/Documents/pgdata
-if type brew&>/dev/null; then
-  export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
-fi
