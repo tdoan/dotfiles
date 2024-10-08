@@ -28,6 +28,7 @@ vopt.autoindent = true
 vopt.splitright = true     -- bool: Place new window to right of current one
 vopt.splitbelow = true
 vopt.laststatus = 2
+vopt.mouse = ""
 
 local opts = { noremap = true, silent = true }
 local keymap = vim.api.nvim_set_keymap
