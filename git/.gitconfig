@@ -1,15 +1,22 @@
 [alias]
   co = checkout
-  st = status
+  fa = fetch --all
   hist = log --graph --date=short --pretty=format: '%h %ad | %s%d [%an]'
+  l = log --oneline
+  s = status --short
+  st = status
   type = cat-file -t
   dump = cat-file -p
-  s = status --short
   sb = show-branch
   sbr = show-branch --remotes
-  l = log --oneline
-  r = remote
+  r = remote -v
 [color]
+  status = auto
+  branch = auto
   ui = true
+[init]
+  defaultBranch = main
 [pull]
   ff = only
+[push]
+  default = simple
