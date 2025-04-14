@@ -13,6 +13,7 @@ zinit load zsh-users/zsh-history-substring-search
 
 autoload -U compinit && compinit
 autoload -Uz tetriscurses
+autoload edit-command-line; zle -N edit-command-line
 
 bindkey -v
 bindkey '^f' autosuggest-accept
@@ -23,6 +24,7 @@ bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 bindkey " " magic-space
 bindkey "^o" clear-screen
+bindkey -M vicmd v edit-command-line
 
 if [ -f ~/.zshrc.local ]; then
     source ~/.zshrc.local
