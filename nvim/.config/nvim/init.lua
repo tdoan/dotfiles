@@ -1,6 +1,7 @@
 -- disable netrw at the very start of your init.lua
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+vim.g.tmux_navigator_no_wrap = 1
 
 vim.g.mapleader = "\\"
 vim.g.localleader = "\\"
@@ -13,6 +14,7 @@ vopt.signcolumn = "yes"    -- str:  Show the sign column
 vopt.encoding = "utf8"     -- str:  String encoding to use
 vopt.fileencoding = "utf8" -- str:  File encoding to use
 vopt.syntax = "ON"         -- str:  Allow syntax highlighting
+vopt.synmaxcol = 160
 vopt.termguicolors = true  -- bool: If term supports ui color then enable
 vopt.ignorecase = true     -- bool: Ignore case in search patterns
 vopt.smartcase = true      -- bool: Override ignorecase if search contains capitals
@@ -36,11 +38,15 @@ keymap('i', 'jk', '<ESC>', opts)
 keymap("n", "<leader><leader>", "<C-^>", opts)
 keymap("n", "<leader><CR>", ":nohlsearch<cr>", opts)
 keymap("n", "<S-h>", "^", opts)
+keymap("n", "<S-l>", "$", opts)
 keymap("n", "<leader>+", "<C-a>", opts)
 keymap("n", "<leader>=", "<C-a>", opts)
 keymap("n", "<leader>-", "<C-x>", opts)
 
-keymap("n", "<S-l>", "$", opts)
+keymap('n', "<leader>e", ':e <C-R>=expand("%:p:h") . "/" <CR>', opts)
+keymap('n', "<leader>t", ':tabe <C-R>=expand("%:p:h") . "/" <CR>', opts)
+keymap('n', "<leader>s", ':split <C-R>=expand("%:p:h") . "/" <CR>', opts)
+keymap('n', "<leader>v", ':vsplit <C-R>=expand("%:p:h") . "/" <CR>', opts)
 
 keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
