@@ -8,6 +8,23 @@ return {
             sync_install = false,
             highlight = { enable = true },
             indent = { enable = true },
+            ensure_installed = {
+                "json",
+                "rust",
+                "yaml",
+                "toml",
+                "ruby",
+                "python",
+                "html",
+                "css",
+                "markdown",
+                "markdown_inline",
+                "bash",
+                "lua",
+                "vim",
+                "dockerfile",
+                "gitignore"
+            },
         })
     end
 }
