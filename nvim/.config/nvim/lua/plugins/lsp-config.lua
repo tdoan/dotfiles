@@ -3,16 +3,7 @@ return {
         "simrat39/rust-tools.nvim",
         config = function()
             local rt = require("rust-tools")
-            rt.setup({
-                server = {
-                    on_attach = function(_, bufnr)
-                        -- Hover actions
-                        vim.keymap.set("n", "<K>", rt.hover_actions.hover_actions, { buffer = bufnr })
-                        -- Code action groups
-                        vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
-                    end,
-                },
-            })
+            rt.setup()
         end
     },
     {
@@ -38,6 +29,8 @@ return {
             vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
             vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {})
             vim.keymap.set({'n', 'v'}, '<leader>ca', vim.lsp.buf.code_action, {})
+            vim.keymap.set('n', 'grn', vim.lsp.buf.rename, {})
+            vim.keymap.set('n', 'grr', vim.lsp.buf.references, {})
             lspconfig.pyright.setup {}
             lspconfig.ts_ls.setup {}
             lspconfig.rust_analyzer.setup {
